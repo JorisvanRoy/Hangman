@@ -21,8 +21,18 @@ void guess() {
     {
         if (game.guess(word))
         {
-            system("cls");
             std::cout << "Congratulations you guessed correctly!" << std::endl;
+
+            std::cout << "Would you like another word? (Y or N)" << std::endl;
+
+            char answer;
+
+            std::cin >> answer;
+
+            if (answer != 'Y' && answer != 'y') return;
+
+            system("cls");
+
             new(&game) Game();
             std::cout << "Your next word is " << game.getSubjectLength() << " letters long" << std::endl;
 
