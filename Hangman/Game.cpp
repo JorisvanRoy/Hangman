@@ -13,22 +13,31 @@ bool Game::guess(std::string word)
 	return true;
 }
 
-std::string Game::guessCharacter(std::string character)
+bool Game::guessCharacter(std::string character)
 {
 	std::string subj;
 	char letter = character[0];
+	bool found = false;
 	for (int i = 0; i < subject.length(); i++)
 	{
 		if (subject[i] == letter) {
 			guessedSubject[i] = subject[i];
+			found = true;
 		}
 	}
-	return guessedSubject;
+	if (!found) remainingGuesses--;
+
+	return found;
 }
 
 int Game::getRemainningGuesses()
 {
 	return remainingGuesses;
+}
+
+std::string Game::getGuessedSubject()
+{
+	return guessedSubject;
 }
 
 int Game::getSubjectLength()

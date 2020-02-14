@@ -21,8 +21,12 @@ void guess() {
     {
         if (game.guess(word))
         {
+            system("cls");
             std::cout << "Congratulations you guessed correctly!" << std::endl;
-            return;
+            new(&game) Game();
+            std::cout << "Your next word is " << game.getSubjectLength() << " letters long" << std::endl;
+
+            guess();
         }
         else
         {
@@ -33,7 +37,15 @@ void guess() {
     }
     else if (word.length() == 1) 
     {
-        std::string subject = game.guessCharacter(word);
+        if (game.guessCharacter(word))
+        {
+            std::cout << "You guessed the character correctly" << std::endl;
+        }
+        else {
+            std::cout << "Sadly you guessed incorrect, you have " << game.getRemainningGuesses() << " guesses left" << std::endl;
+        }
+
+        std::string subject = game.getGuessedSubject();
 
         std::cout << subject << std::endl;
         guess();
@@ -47,7 +59,7 @@ int main()
 
     std::cout << "Welcome to Hangman!" << std::endl;
 
-    std::cout << "Your first word is " << game.getSubjectLength() << "Letters long" << std::endl;
+    std::cout << "Your first word is " << game.getSubjectLength() << " letters long" << std::endl;
 
     guess();
 

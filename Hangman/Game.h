@@ -5,8 +5,9 @@ class Game
 public:
 	Game();
 	bool guess(std::string word);
-	std::string guessCharacter(std::string character);
+	bool guessCharacter(std::string character);
 	int getRemainningGuesses();
+	std::string getGuessedSubject();
 	int getSubjectLength();
 private:
 	std::string subjects[3] = { "Apple", "Pear", "Banana" };
